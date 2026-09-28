@@ -15,6 +15,7 @@ CLAUDE.md
 *.log
 .claude-replay.*
 .tmp-*
+.DS_Store
 /.figma/design-context/
 
 # Platform-managed agentplat state, not project source. In the
