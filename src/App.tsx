@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import L from 'leaflet'
 
 // Fix leaflet default marker icon
@@ -9,6 +9,17 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 })
+
+
+function MapAttribution() {
+  const map = useMap()
+
+  useEffect(() => {
+    map.attributionControl.setPrefix('')
+  }, [map])
+
+  return null
+}
 
 // ── Scroll reveal component ────────────────────────────────────────────────
 function Reveal({ children, className = '', delay = 0, stagger = false }: {
@@ -43,65 +54,136 @@ function Reveal({ children, className = '', delay = 0, stagger = false }: {
 const photos = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&h=800&fit=crop&auto=format',
-    caption: 'Our first trip together — that tiny cafe in the rain.',
-    date: 'March 2023',
-    hearts: 14,
+    url: './photos/sevkabel.jpg',
+    caption: 'люблю с тобой гулять по улице',
+    date: 'май 2026',
+    hearts: 67,
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&h=600&fit=crop&auto=format',
-    caption: 'Golden hour on the rooftop. You looked like a painting.',
-    date: 'July 2023',
+    url: './photos/gum.jpg',
+    caption: 'и путешествовать',
+    date: 'ноябрь 2025',
     hearts: 21,
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=700&h=750&fit=crop&auto=format',
-    caption: 'Late night drives and your playlist on repeat.',
-    date: 'October 2023',
-    hearts: 9,
+    url: './photos/hippo.jpg',
+    caption: 'ты любишь бегемотов',
+    date: 'сентябрь 2025',
+    hearts: 33,
   },
   {
     id: 4,
-    url: 'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&h=650&fit=crop&auto=format',
-    caption: 'Morning light, messy hair, happiest I have ever been.',
-    date: 'January 2024',
-    hearts: 17,
-  },
-  {
-    id: 5,
-    url: 'https://images.unsplash.com/photo-1501901609772-df0848060b33?w=700&h=800&fit=crop&auto=format',
-    caption: 'The beach day that turned into a whole adventure.',
-    date: 'June 2024',
+    url: './photos/doll.jpg',
+    caption: 'тебе больше всего понравился кукольный спектакль',
+    date: 'март 2024',
     hearts: 25,
   },
   {
+    id: 5,
+    url: './photos/exhibition.jpg',
+    caption: 'отмечаем 8 марта',
+    date: 'март 2024',
+    hearts: 42,
+  },
+  {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=700&h=600&fit=crop&auto=format',
-    caption: 'Picnic in the park. Your laugh echoed everywhere.',
-    date: 'August 2024',
-    hearts: 12,
+    url: './photos/masyan.jpg',
+    caption: 'на пленку ты особенно красивая',
+    date: 'октябрь 2024',
+    hearts: 52,
+  },
+  {
+    id: 7,
+    url: './photos/culture.jpg',
+    caption: 'мы первый раз в театре',
+    date: 'май 2023',
+    hearts: 77,
+  },
+  {
+    id: 8,
+    url: './photos/ride.jpg',
+    caption: 'ночная поездка. ты красивая',
+    date: 'март 2024',
+    hearts: 51,
   },
 ]
 
 const places = [
-  { id: 1, lat: 48.8566, lng: 2.3522, name: 'Paris', note: 'Where we got completely lost and it was perfect.', emoji: '🗼' },
-  { id: 2, lat: 51.5074, lng: -0.1278, name: 'London', note: 'That tiny pub in Soho where you taught me darts.', emoji: '🎯' },
-  { id: 3, lat: 41.9028, lng: 12.4964, name: 'Rome', note: 'Gelato at midnight. Three scoops each.', emoji: '🍦' },
-  { id: 4, lat: 52.3676, lng: 4.9041, name: 'Amsterdam', note: 'Bikes, canals, and terrible navigation.', emoji: '🚲' },
-  { id: 5, lat: 40.4168, lng: -3.7038, name: 'Madrid', note: 'We stayed out until 4am and had no regrets.', emoji: '🌙' },
-  { id: 6, lat: 50.0755, lng: 14.4378, name: 'Prague', note: 'The castle at sunrise. Just us and the city below.', emoji: '🏰' },
+  {
+    id: 1,
+    lat: 59.9343,
+    lng: 30.3351,
+    name: 'Санкт-Петербург',
+    note: 'тут мы встретились',
+    emoji: '🏛️',
+  },
+  {
+    id: 2,
+    lat: 60.7139,
+    lng: 28.7495,
+    name: 'Выборг',
+    note: 'тут мы отмечаем половинки годовщин',
+    emoji: '🏰',
+  },
+  {
+    id: 3,
+    lat: 54.7104,
+    lng: 20.4522,
+    name: 'Калининград',
+    note: 'путешествие за 100 рублей',
+    emoji: '⚓',
+  },
+  {
+    id: 4,
+    lat: 55.7558,
+    lng: 37.6173,
+    name: 'Москва',
+    note: 'ты тут впервые побывала хех',
+    emoji: '🏙️',
+  },
+  {
+    id: 5,
+    lat: 16.0544,
+    lng: 108.2022,
+    name: 'Дананг',
+    note: 'тут мы будем скоро жить и отдыхать',
+    emoji: '🏖️',
+  },
+  {
+    id: 6,
+    lat: 45.0355,
+    lng: 38.9753,
+    name: 'Краснодар',
+    note: 'путешествие табрис и тепло',
+    emoji: '🌳',
+  },
+  {
+    id: 7,
+    lat: 44.3244,
+    lng: 38.7074,
+    name: 'Джубга',
+    note: 'мм морская водичка',
+    emoji: '🌊',
+  },
+  {
+    id: 8,
+    lat: 60.0000,
+    lng: 29.7667,
+    name: 'Кронштадт',
+    note: 'лучшая летняя прогулка',
+    emoji: '⚓',
+  },
 ]
 
 const letterLines = [
-  "I didn't expect you.",
-  "That's the truest thing I can say. I wasn't looking, wasn't ready, wasn't sure about any of it — and then there you were, talking about something I can't even remember now, and I thought: oh. There she is.",
-  "A year of you has been a year of noticing things I'd stopped noticing. The way a city feels different at 7am. What a meal tastes like when someone you love made it. How much lighter a room gets when you walk into it.",
-  "I've kept a running list in my head — things I want to tell you and forget to. That you're funnier than you think you are. That the way you get excited about small things is one of my favourite things about you. That I'm still a little amazed, most days, that you chose me.",
-  "Thank you for this year. For the patience, the kindness, the honesty. For pushing me when I needed it and letting me be when I didn't. For being exactly yourself — no performance, no pretending.",
-  "Here's to every year after this one.",
-  "All my love, always —",
+  "3.5",
+  "Уже столько лет я радуюсь каждый раз, когда вижу тебя, когда мы засыпаем и просыпаемся вместе, когда гуляем или сидим дома, когда разговриваем или молчим",
+  "За это время я стал замечать, насколько вкуснее становится еда, если ее приготовил любимый человек, насколько светлее становится комната, когда ты в нее заходишь, насколько по-другому ощущаются моменты, прожитые рядом с тобой ",
+  "Ты мой самый любимый и дорогой человек. Люблю твои длинные, густые, мягкие, как плюш волосы. Люблю твои маленькие нежные ручки, на которых очень удобно лежать. Люблю смотреть в твои большие открытые глаза. Люблю твой носик, твои большие самые вкусные губы, люблю гладить твою спину",
+  "Спасибо тебе за эти три с половиной года. Я очень хочу чтобы они никогда не заканчивались",
+  "Вся моя любовь тебе",
 ]
 
 // ── Heart button ───────────────────────────────────────────────────────────
@@ -173,16 +255,16 @@ function HeroSection() {
         className="font-display italic mb-4 reveal"
         style={{ fontSize: 'clamp(2.8rem,8vw,5.5rem)', lineHeight: 1.05, color: 'var(--fg)' }}
       >
-        for you,<br />always.
+        3.5<br />масяня и ваня
       </p>
       <p className="text-base reveal" style={{ color: 'var(--muted-fg)', maxWidth: 320, transitionDelay: '0.15s' }}>
-        one year of us — captured, mapped, and written down.
+        🦛
       </p>
       <div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 reveal"
         style={{ color: 'var(--muted-fg)', transitionDelay: '0.3s' }}
       >
-        <span className="text-xs uppercase tracking-widest">scroll</span>
+        <span className="text-xs uppercase tracking-widest">прокрутить</span>
         <svg width="16" height="24" viewBox="0 0 16 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <rect x="1" y="1" width="14" height="22" rx="7" />
           <circle cx="8" cy="7" r="2" fill="currentColor">
@@ -245,9 +327,9 @@ function PhotoSection() {
     <section className="py-24 px-4" style={{ background: 'var(--bg)' }}>
       <div className="max-w-2xl mx-auto">
         <Reveal className="text-center mb-14">
-          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>chapter one</span>
+          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>часть один</span>
           <h2 className="font-display italic mt-2" style={{ fontSize: 'clamp(2rem,5vw,3rem)', color: 'var(--fg)' }}>
-            moments
+            моменты
           </h2>
         </Reveal>
 
@@ -266,12 +348,12 @@ function MapSection() {
     <section className="py-24 px-4" style={{ background: 'var(--secondary)' }}>
       <div className="max-w-2xl mx-auto">
         <Reveal className="text-center mb-14">
-          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>chapter two</span>
+          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>часть два</span>
           <h2 className="font-display italic mt-2" style={{ fontSize: 'clamp(2rem,5vw,3rem)', color: 'var(--fg)' }}>
-            places we found each other
+            где мы были и побываем
           </h2>
           <p className="text-sm mt-2" style={{ color: 'var(--muted-fg)' }}>
-            tap any pin
+            нажимай на значки
           </p>
         </Reveal>
 
@@ -287,9 +369,10 @@ function MapSection() {
               zoomControl={false}
               scrollWheelZoom={false}
             >
+              <MapAttribution />
               <TileLayer
                 attribution=""
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                url="https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_41i1_1_379442cd5aaf060817b87885"
               />
               {places.map(p => (
                 <Marker key={p.id} position={[p.lat, p.lng]} icon={makePin(p.emoji)}>
@@ -332,9 +415,9 @@ function LetterSection() {
     <section className="py-24 px-4" style={{ background: 'var(--bg)' }}>
       <div className="max-w-xl mx-auto">
         <Reveal className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>chapter three</span>
+          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-fg)' }}>часть три</span>
           <h2 className="font-display italic mt-2" style={{ fontSize: 'clamp(2rem,5vw,3rem)', color: 'var(--fg)' }}>
-            a letter
+            масяня
           </h2>
         </Reveal>
 
@@ -361,7 +444,7 @@ function LetterSection() {
 
         <Reveal className="text-center mt-10">
           <p className="font-display italic text-lg" style={{ color: 'var(--muted-fg)' }}>
-            happy anniversary.
+            happy anniversary
           </p>
         </Reveal>
       </div>
@@ -372,8 +455,8 @@ function LetterSection() {
 function Footer() {
   return (
     <footer className="text-center py-10 px-4" style={{ background: 'var(--secondary)', borderTop: '1px solid var(--border)' }}>
-      <p className="font-display italic text-2xl" style={{ color: 'var(--fg)' }}>made with love</p>
-      <p className="text-sm mt-1" style={{ color: 'var(--muted-fg)' }}>just for you</p>
+      <p className="font-display italic text-2xl" style={{ color: 'var(--fg)' }}>я тебя люблю</p>
+      <p className="text-sm mt-1" style={{ color: 'var(--muted-fg)' }}>очень очень</p>
     </footer>
   )
 }
